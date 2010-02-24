@@ -1,5 +1,5 @@
 
-# SAPNW is Copyright (c) 2006-2008 Piers Harding.  It is free software, and
+# SAPNW is Copyright (c) 2006-2010 Piers Harding.  It is free software, and
 # may be redistributed under the terms specified in the README file of
 # the Ruby distribution.
 #

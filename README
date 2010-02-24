@@ -49,7 +49,7 @@ eg - mine is:
 
 == License
 
-saprfc is Copyright (c) 2006-2008 Piers Harding.  It is free software, and
+sapnwrfc is Copyright (c) 2006-2010 Piers Harding.  It is free software, and
 may be redistributed under the terms specified in the README file of
 the Ruby distribution.
 
@@ -60,5 +60,5 @@ One last thing - The SAP RFCSDK is a prerequisite for this perl package to work.
 
 Author::   Piers Harding <piers@ompka.net>
 Requires:: Ruby 1.8.x or later
-License::  Copyright (c) 2006-2008 Piers Harding
+License::  Copyright (c) 2006-2010 Piers Harding
            Released under Ruby's License
