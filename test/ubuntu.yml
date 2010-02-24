@@ -1,0 +1,8 @@
+ashost: ubuntu.local.net
+sysnr: "01"
+client: "001"
+user: developer
+passwd: developer
+lang: EN
+trace: 2
+loglevel: warn

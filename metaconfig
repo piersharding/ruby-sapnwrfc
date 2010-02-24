@@ -1,0 +1,2 @@
+add_path_config "with-nwrfcsdk-dir", "/usr/sap/nwrfcsdk", "Location of the NWRFCSDK [/usr/sap/nwrfcsdk]"
+add_path_config "embed-vcruntime", "no", "Specifically embed the VC runtime [no]"

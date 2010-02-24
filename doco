@@ -1,0 +1,7 @@
+#!/bin/sh
+#FILE=/tmp/tmp$$.html
+
+##/usr/bin/rd2  $1 > $FILE && lynx $FILE && rm $FILE
+#rdoc  $1 > $FILE && lynx $FILE && rm $FILE
+ rm -rf doc; rdoc -a -d -F -S -N -t "sapnwrfc Documentation" ./lib/sapnwrfc.rb `find ./lib/sapnwrfc -name '*.rb'`
+#  rd2 ./lib/SAP/Rfc.rb > ./doc/saprfc.html

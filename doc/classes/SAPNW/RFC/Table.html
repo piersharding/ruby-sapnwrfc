@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: SAPNW::RFC::Table</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">SAPNW::RFC::Table</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/sapnwrfc/parameters_rb.html">
+                lib/sapnwrfc/parameters.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="Parameter.html">
+                SAPNW::RFC::Parameter
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+    <div id="diagram">
+      <map id="map" name="map">
+  <area shape="rect" coords="255,269,335,317"      href="Parameter.html" alt="Parameter" />
+  <area shape="rect" coords="61,365,133,413"      href="Export.html" alt="Export" />
+  <area shape="rect" coords="157,365,235,413"      href="Changing.html" alt="Changing" />
+  <area shape="rect" coords="259,365,331,413"      href="Table.html" alt="Table" />
+  <area shape="rect" coords="355,365,427,413"      href="Import.html" alt="Import" />
+  <area shape="rect" coords="1152,120,1229,168"      href="../../Exception.html" alt="Exception" />
+  <area shape="rect" coords="829,269,947,317"      href="ServerException.html" alt="ServerException" />
+  <area shape="rect" coords="477,120,549,168"      href="../Parameters/Base.html" alt="Base" />
+  <area shape="rect" coords="967,120,1039,168"      href="../Base.html" alt="Base" />
+  <area shape="rect" coords="1000,269,1088,317"      href="Connection.html" alt="Connection" />
+  <area shape="rect" coords="733,269,805,317"      href="Server.html" alt="Server" />
+  <area shape="rect" coords="611,269,701,317"      href="FunctionCall.html" alt="FunctionCall" />
+  <area shape="rect" coords="459,269,587,317"      href="FunctionDescriptor.html" alt="FunctionDescriptor" />
+  <area shape="rect" coords="112,269,184,317"      href="Type.html" alt="Type" />
+  <area shape="rect" coords="104,120,176,168"      href="../Functions/Base.html" alt="Base" />
+  <area shape="rect" coords="941,85,1064,179"      href="../../SAPNW.html" alt="lib/sapnwrfc/base.rb" />
+  <area shape="rect" coords="771,108,864,156"      href="../Connections.html" alt="Connections" />
+  <area shape="rect" coords="464,85,617,179"      href="../Parameters.html" alt="lib/sapnwrfc/parameters.rb" />
+  <area shape="rect" coords="440,51,628,189"      href="../Parameters.html" alt="Parameters" />
+  <area shape="rect" coords="336,108,429,156"      href="../Config.html" alt="Config" />
+  <area shape="rect" coords="968,235,1120,328"      href="../RFC.html" alt="lib/sapnwrfc/connection.rb" />
+  <area shape="rect" coords="723,235,957,328"      href="../RFC.html" alt="lib/sapnwrfc/server.rb" />
+  <area shape="rect" coords="448,235,712,328"      href="../RFC.html" alt="lib/sapnwrfc/functions.rb" />
+  <area shape="rect" coords="51,235,437,424"      href="../RFC.html" alt="lib/sapnwrfc/parameters.rb" />
+  <area shape="rect" coords="27,200,1131,435"      href="../RFC.html" alt="RFC" />
+  <area shape="rect" coords="232,108,325,156"      href="../Servers.html" alt="Servers" />
+  <area shape="rect" coords="67,85,211,179"      href="../Functions.html" alt="lib/sapnwrfc/functions.rb" />
+  <area shape="rect" coords="43,51,221,189"      href="../Functions.html" alt="Functions" />
+  <area shape="rect" coords="16,16,1141,445"      href="../../SAPNW.html" alt="SAPNW" />
+</map>
+<img src="../../../dot/m_6_0.png" usemap="#map" border="0" alt="dot/m_6_0.png">
+    </div>
+
+    <div id="description">
+      <p>
+<a href="../RFC.html">RFC</a> <a href="Table.html">Table</a> type <a
+href="../Parameters.html">Parameters</a>
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000011">each</a>&nbsp;&nbsp;
+      <a href="#M000009">length</a>&nbsp;&nbsp;
+      <a href="#M000008">new</a>&nbsp;&nbsp;
+      <a href="#M000010">value=</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000008" class="method-detail">
+        <a name="M000008"></a>
+
+        <div class="method-heading">
+          <a href="#M000008" class="method-signature">
+          <span class="method-name">new</span><span class="method-args">(*args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000008-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000008-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/sapnwrfc/parameters.rb, line 233</span>
+233:                   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+234:                           <span class="ruby-ivar">@direction</span> = <span class="ruby-constant">SAPNW</span><span class="ruby-operator">::</span><span class="ruby-constant">RFC</span><span class="ruby-operator">::</span><span class="ruby-constant">TABLES</span>
+235:                                 <span class="ruby-keyword kw">super</span>
+236:                         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000011" class="method-detail">
+        <a name="M000011"></a>
+
+        <div class="method-heading">
+          <a href="#M000011" class="method-signature">
+          <span class="method-name">each</span><span class="method-args">() {|row| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Yields <a href="Table.html#M000011">each</a> row of the table to passed
+Proc
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000011-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000011-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/sapnwrfc/parameters.rb, line 260</span>
+260:                   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">each</span>
+261:                           <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@value</span>
+262:                                 <span class="ruby-ivar">@value</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">row</span><span class="ruby-operator">|</span>
+263:                                   <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">row</span>
+264:                                 <span class="ruby-keyword kw">end</span>
+265:                         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000009" class="method-detail">
+        <a name="M000009"></a>
+
+        <div class="method-heading">
+          <a href="#M000009" class="method-signature">
+          <span class="method-name">length</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+returns the no. of rows currently in the table
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000009-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000009-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/sapnwrfc/parameters.rb, line 239</span>
+239:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">length</span>
+240:         <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@value</span>.<span class="ruby-identifier">length</span>
+241:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000010" class="method-detail">
+        <a name="M000010"></a>
+
+        <div class="method-heading">
+          <a href="#M000010" class="method-signature">
+          <span class="method-name">value=</span><span class="method-args">(val=[])</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+assign an Array, of rows represented by Hashes to the value of the <a
+href="Table.html">Table</a> parameter.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000010-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000010-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/sapnwrfc/parameters.rb, line 245</span>
+245:                   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">value=</span>(<span class="ruby-identifier">val</span>=[])
+246:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">val</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Array</span>)
+247:                             <span class="ruby-identifier">raise</span> <span class="ruby-constant">TypeError</span>, <span class="ruby-node">&quot;Must be Array for table value (#{@name}/#{val.class})\n&quot;</span>
+248:                                 <span class="ruby-keyword kw">end</span>
+249:                                 <span class="ruby-identifier">cnt</span> = <span class="ruby-value">0</span>
+250:                           <span class="ruby-identifier">val</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">row</span><span class="ruby-operator">|</span>
+251:                                   <span class="ruby-identifier">cnt</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+252:           <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">row</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)
+253:                               <span class="ruby-identifier">raise</span> <span class="ruby-constant">TypeError</span>, <span class="ruby-node">&quot;Must be Hash for table row value (#{@name}/#{cnt}/#{row.class})\n&quot;</span>
+254:                                   <span class="ruby-keyword kw">end</span>
+255:                                 <span class="ruby-keyword kw">end</span>
+256:                                 <span class="ruby-ivar">@value</span> = <span class="ruby-identifier">val</span>
+257:                         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

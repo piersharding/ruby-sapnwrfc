@@ -1,0 +1,64 @@
+= sapnwrfc - SAP Netweaver RFC support for Ruby - the next generation
+
+== Summary
+
+Welcome to the sapnwrfc Ruby package.  This package is intended to facilitate RFC calls to an SAP R/3 system of release NW2004x and above.  It may work for earlier versions but it hasn't been tested.
+The fundamental purpose of the production of this package, is to provide a clean object oriented interface to RFC calls from within Ruby.  This will hopefully have a number of effects:
+(1) make it really easy to do RFC calls to SAP from Ruby in an object oriented fashion (Doh!)
+(2) promote Ruby as the interface/scripting/glue language of choice for interaction with SAP R/3.
+(3) make the combination of Linux, Apache, and Ruby the killer app for internet connectivity with SAP.
+(4) Establish a small fun open source project that people are more than welcome to contribute to, if they so wish.
+
+== Installation
+
+After you have unpacked your kit, you should have all the files listed
+in the MANIFEST.
+
+In brief, the following should work on most systems:
+  ruby setup.rb 
+
+if your rfcsdk is not findable in the system search path, then use the command line switches
+for mkmf/setup.rb like so:
+ruby setup.rb config  --with-nwrfcsdk-dir=/path/to/rfcsdk
+ruby setup.rb setup
+
+Now you can either install like so:
+ruby setup.rb install
+
+or build the gem and install that like so:
+gem build sapnwrfc.linux.gemspec
+gem uninstall sapnwrfc
+gem install sapnwrfc-<version>-<architecture>.gem 
+
+
+VERY IMPORTANT - make sure that you add the library path to LD_LIBRARY_PATH
+eg - mine is:
+ export LD_LIBRARY_PATH=/home/piers/code/sap/nwrfcsdk/lib
+
+
+== Documents and Tests
+
+[doc/*]
+   Module Documentation
+
+[tests/*.rb]
+   Test basic connection, and some rfc call examples
+
+== Credits
+
+
+== License
+
+saprfc is Copyright (c) 2006-2008 Piers Harding.  It is free software, and
+may be redistributed under the terms specified in the README file of
+the Ruby distribution.
+
+One last thing - The SAP RFCSDK is a prerequisite for this perl package to work.  The RFCSDK is proprietrary software owned by SAP AG.  For this reason I will not supply ANY component part of the RFCSDK with this perl package, and further more you must obtain it through the normal channels with SAP AG - ie. you must have a licensed SAP R/3 installation at your disposal.
+
+
+= Other stuff
+
+Author::   Piers Harding <piers@ompka.net>
+Requires:: Ruby 1.8.x or later
+License::  Copyright (c) 2006-2008 Piers Harding
+           Released under Ruby's License

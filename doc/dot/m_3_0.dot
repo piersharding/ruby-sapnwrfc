@@ -1,0 +1,323 @@
+digraph TopLevel {
+    label = "TopLevel"
+    compound = true
+    fontname = Arial
+    fontsize = 8
+    bgcolor = lightcyan1
+    node [
+        color = black,
+        fontname = Arial,
+        fontsize = 8
+    ]
+
+    SAPNW__RFC__Parameter -> SAPNW__RFC__Export [
+
+    ]
+
+    SAPNW__RFC__Parameter -> SAPNW__RFC__Changing [
+
+    ]
+
+    SAPNW__RFC__Parameter -> SAPNW__RFC__Table [
+
+    ]
+
+    Exception [
+        URL = "classes/Exception.html",
+        label = "Exception"
+    ]
+
+    Exception -> SAPNW__RFC__ServerException [
+
+    ]
+
+    SAPNW__RFC__Parameter -> SAPNW__RFC__Import [
+
+    ]
+
+    SAPNW__Parameters__Base -> SAPNW__RFC__Parameter [
+
+    ]
+
+    subgraph cluster_SAPNW {
+        label = "SAPNW"
+        fillcolor = palegreen1
+        URL = "classes/SAPNW.html"
+        color = blue
+        fontname = Arial
+        style = filled
+        SAPNW [
+            shape = plaintext,
+            height = 0.01,
+            width = 0.01,
+            label = ""
+        ]
+
+        subgraph cluster_72 {
+            label = "lib/sapnwrfc/base.rb"
+            color = black
+            fontname = Arial
+            SAPNW__Base [
+                fontcolor = black,
+                shape = ellipse,
+                URL = "classes/SAPNW/Base.html",
+                color = palegoldenrod,
+                style = filled,
+                label = "Base"
+            ]
+
+        }
+
+        subgraph cluster_SAPNW__Connections {
+            label = "Connections"
+            fillcolor = palegreen3
+            URL = "classes/SAPNW/Connections.html"
+            color = blue
+            fontname = Arial
+            style = filled
+            SAPNW__Connections [
+                shape = plaintext,
+                height = 0.01,
+                width = 0.75,
+                label = ""
+            ]
+
+        }
+
+        subgraph cluster_SAPNW__Parameters {
+            label = "Parameters"
+            fillcolor = palegreen3
+            URL = "classes/SAPNW/Parameters.html"
+            color = blue
+            fontname = Arial
+            style = filled
+            SAPNW__Parameters [
+                shape = plaintext,
+                height = 0.01,
+                width = 0.01,
+                label = ""
+            ]
+
+            subgraph cluster_75 {
+                label = "lib/sapnwrfc/parameters.rb"
+                color = black
+                fontname = Arial
+                SAPNW__Parameters__Base [
+                    fontcolor = black,
+                    shape = ellipse,
+                    URL = "classes/SAPNW/Parameters/Base.html",
+                    color = palegoldenrod,
+                    style = filled,
+                    label = "Base"
+                ]
+
+            }
+
+        }
+
+        subgraph cluster_SAPNW__Config {
+            label = "Config"
+            fillcolor = palegreen3
+            URL = "classes/SAPNW/Config.html"
+            color = blue
+            fontname = Arial
+            style = filled
+            SAPNW__Config [
+                shape = plaintext,
+                height = 0.01,
+                width = 0.75,
+                label = ""
+            ]
+
+        }
+
+        subgraph cluster_SAPNW__RFC {
+            label = "RFC"
+            fillcolor = palegreen3
+            URL = "classes/SAPNW/RFC.html"
+            color = blue
+            fontname = Arial
+            style = filled
+            SAPNW__RFC [
+                shape = plaintext,
+                height = 0.01,
+                width = 0.01,
+                label = ""
+            ]
+
+            subgraph cluster_81 {
+                label = "lib/sapnwrfc/connection.rb"
+                color = black
+                fontname = Arial
+                SAPNW__RFC__Connection [
+                    fontcolor = black,
+                    shape = ellipse,
+                    URL = "classes/SAPNW/RFC/Connection.html",
+                    color = palegoldenrod,
+                    style = filled,
+                    label = "Connection"
+                ]
+
+            }
+
+            subgraph cluster_80 {
+                label = "lib/sapnwrfc/server.rb"
+                color = black
+                fontname = Arial
+                SAPNW__RFC__ServerException [
+                    fontcolor = black,
+                    shape = ellipse,
+                    URL = "classes/SAPNW/RFC/ServerException.html",
+                    color = palegoldenrod,
+                    style = filled,
+                    label = "ServerException"
+                ]
+
+                SAPNW__RFC__Server [
+                    fontcolor = black,
+                    shape = ellipse,
+                    URL = "classes/SAPNW/RFC/Server.html",
+                    color = palegoldenrod,
+                    style = filled,
+                    label = "Server"
+                ]
+
+            }
+
+            subgraph cluster_79 {
+                label = "lib/sapnwrfc/functions.rb"
+                color = black
+                fontname = Arial
+                SAPNW__RFC__FunctionCall [
+                    fontcolor = black,
+                    shape = ellipse,
+                    URL = "classes/SAPNW/RFC/FunctionCall.html",
+                    color = palegoldenrod,
+                    style = filled,
+                    label = "FunctionCall"
+                ]
+
+                SAPNW__RFC__FunctionDescriptor [
+                    fontcolor = black,
+                    shape = ellipse,
+                    URL = "classes/SAPNW/RFC/FunctionDescriptor.html",
+                    color = palegoldenrod,
+                    style = filled,
+                    label = "FunctionDescriptor"
+                ]
+
+            }
+
+            subgraph cluster_78 {
+                label = "lib/sapnwrfc/parameters.rb"
+                color = black
+                fontname = Arial
+                SAPNW__RFC__Export [
+                    fontcolor = black,
+                    shape = ellipse,
+                    URL = "classes/SAPNW/RFC/Export.html",
+                    color = palegoldenrod,
+                    style = filled,
+                    label = "Export"
+                ]
+
+                SAPNW__RFC__Changing [
+                    fontcolor = black,
+                    shape = ellipse,
+                    URL = "classes/SAPNW/RFC/Changing.html",
+                    color = palegoldenrod,
+                    style = filled,
+                    label = "Changing"
+                ]
+
+                SAPNW__RFC__Table [
+                    fontcolor = black,
+                    shape = ellipse,
+                    URL = "classes/SAPNW/RFC/Table.html",
+                    color = palegoldenrod,
+                    style = filled,
+                    label = "Table"
+                ]
+
+                SAPNW__RFC__Import [
+                    fontcolor = black,
+                    shape = ellipse,
+                    URL = "classes/SAPNW/RFC/Import.html",
+                    color = palegoldenrod,
+                    style = filled,
+                    label = "Import"
+                ]
+
+                SAPNW__RFC__Parameter [
+                    fontcolor = black,
+                    shape = ellipse,
+                    URL = "classes/SAPNW/RFC/Parameter.html",
+                    color = palegoldenrod,
+                    style = filled,
+                    label = "Parameter"
+                ]
+
+                SAPNW__RFC__Type [
+                    fontcolor = black,
+                    shape = ellipse,
+                    URL = "classes/SAPNW/RFC/Type.html",
+                    color = palegoldenrod,
+                    style = filled,
+                    label = "Type"
+                ]
+
+            }
+
+        }
+
+        subgraph cluster_SAPNW__Servers {
+            label = "Servers"
+            fillcolor = palegreen3
+            URL = "classes/SAPNW/Servers.html"
+            color = blue
+            fontname = Arial
+            style = filled
+            SAPNW__Servers [
+                shape = plaintext,
+                height = 0.01,
+                width = 0.75,
+                label = ""
+            ]
+
+        }
+
+        subgraph cluster_SAPNW__Functions {
+            label = "Functions"
+            fillcolor = palegreen3
+            URL = "classes/SAPNW/Functions.html"
+            color = blue
+            fontname = Arial
+            style = filled
+            SAPNW__Functions [
+                shape = plaintext,
+                height = 0.01,
+                width = 0.01,
+                label = ""
+            ]
+
+            subgraph cluster_84 {
+                label = "lib/sapnwrfc/functions.rb"
+                color = black
+                fontname = Arial
+                SAPNW__Functions__Base [
+                    fontcolor = black,
+                    shape = ellipse,
+                    URL = "classes/SAPNW/Functions/Base.html",
+                    color = palegoldenrod,
+                    style = filled,
+                    label = "Base"
+                ]
+
+            }
+
+        }
+
+    }
+
+}
+

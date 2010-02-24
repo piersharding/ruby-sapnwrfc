@@ -1,0 +1,21 @@
+2007-01-24  Piers Harding  <piers@ompka.net>
+
+	* Initial Release
+	This is the first release of sapnw for Ruby
+	it contains support for full interface discovery, and all SAP ABAP datatypes
+	in structures or parameters, and some support for deep structures
+
+Fri May 18 10:07:59 BST 2007
+  * fix up ambiguities in the build process
+
+Wed May 30 17:54:09 BST 2007
+  * add in support for nested tables in parameters
+
+Fri Jun  1 16:42:30 BST 2007
+  * add in nested table support: parameter -> field -> table ...
+
+Thu Jun 26 18:51:20 NZST 2008
+  * removed connection attributes that are nolonger supported
+
+Thu Dec 11 09:51:47 NZDT 2008
+  * make sure that close cannot be called twice
