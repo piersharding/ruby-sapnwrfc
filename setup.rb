@@ -909,8 +909,8 @@ class ToplevelInstaller
     evalopt = []
     set = []
     @config.config_opt = []
-    while i = ARGV.shift
-		  i.rstrip!
+    while itemp = ARGV.shift
+		  i = itemp.rstrip
       if /\A--?\z/ =~ i or
          /\A--[\w\-]+\=[\w\d\/\\\:\~\-]+\z/.match(i)
 			  #XXX
