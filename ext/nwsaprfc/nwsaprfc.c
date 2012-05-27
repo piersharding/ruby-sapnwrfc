@@ -154,9 +154,9 @@ VALUE u16to8c(SAP_UC * str, int len) {
     char * utf8;
     VALUE rb_str;
 
-  utf8Size = len * 2;
-  utf8 = malloc(utf8Size + 1);
-  memset(utf8, 0, utf8Size + 1);
+  utf8Size = len * 4;
+  utf8 = malloc(utf8Size + 2);
+  memset(utf8, 0, utf8Size + 2);
 
     resultLength = 0;
 
@@ -177,9 +177,9 @@ VALUE u16to8(SAP_UC * str) {
     char * utf8;
     VALUE rb_str;
 
-  utf8Size = strlenU(str) * 2;
-  utf8 = malloc(utf8Size + 1);
-  memset(utf8, 0, utf8Size + 1);
+  utf8Size = strlenU(str) * 4;
+  utf8 = malloc(utf8Size + 2);
+  memset(utf8, 0, utf8Size + 2);
 
     resultLength = 0;
 
@@ -1256,7 +1256,7 @@ static VALUE get_string_value(DATA_CONTAINER_HANDLE hcont, SAP_UC *name){
   if (strLen == 0)
       return Qnil;
 
-  buffer = make_space(strLen*2 + 2);
+  buffer = make_space(strLen*4 + 2);
   rc = RfcGetString(hcont, name, (SAP_UC *)buffer, strLen + 2, &retStrLen, &errorInfo);
   if (rc != RFC_OK) {
        SAPNW_rfc_call_error(rb_str_concat(rb_str_new2("Problem with RfcGetString: "),
@@ -1369,7 +1369,7 @@ static VALUE get_char_value(DATA_CONTAINER_HANDLE hcont, SAP_UC *name, unsigned 
     char * buffer;
     VALUE val;
 
-  buffer = make_space(ulen*2+1); /* seems that you need 2 null bytes to terminate a string ...*/
+  buffer = make_space(ulen*4+2); /* seems that you need 2 null bytes to terminate a string ...*/
 
   rc = RfcGetChars(hcont, name, (RFC_CHAR *)buffer, ulen, &errorInfo);
   if (rc != RFC_OK) {
@@ -1379,6 +1379,7 @@ static VALUE get_char_value(DATA_CONTAINER_HANDLE hcont, SAP_UC *name, unsigned 
                                                 u16to8(errorInfo.key),
                                        u16to8(errorInfo.message));
   }
+    //fprintfU(stderr, cU("Return char: %s\n"), buffer);
     val = u16to8((SAP_UC *)buffer);
   free(buffer);
 

@@ -19,3 +19,6 @@ Thu Jun 26 18:51:20 NZST 2008
 
 Thu Dec 11 09:51:47 NZDT 2008
   * make sure that close cannot be called twice
+
+Mon May 28 09:33:39 NZST 2012
+* fix 4 byte char buffers

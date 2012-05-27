@@ -5,7 +5,7 @@ find . -name '*.log' -type f -exec echo \> {} \;
 find . -name 'rfc*trc' -type f -exec rm -f {} \;
 find . -name '*~' -type f -exec rm -f {} \;
 
-VERS=0.23
+VERS=0.24
 DIST=sapnwrfc-$VERS
 BALL=$DIST.tar.gz
 ZIP=$DIST.zip
@@ -73,8 +73,8 @@ echo "Done."
 chmod -R a+r doc $BALL $ZIP
 
 echo "Copy up documentation"
-rsync -av --delete --rsh=ssh doc ompka.net:www/download/ruby/sapnwrfc/
+rsync -av --delete --rsh=ssh doc piersharding.com:www/download/ruby/sapnwrfc/
 
 echo "Copy up distribution"
-scp $BALL ompka.net:www/download/ruby/sapnwrfc/
-scp $ZIP ompka.net:www/download/ruby/sapnwrfc/
+scp $BALL piersharding.com:www/download/ruby/sapnwrfc/
+scp $ZIP piersharding.com:www/download/ruby/sapnwrfc/

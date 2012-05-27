@@ -1,18 +1,20 @@
 $:.unshift('./test')
-
-require 'test/unit/testsuite'
+require 'test/unit'
+#require "test/unit/runner/gtk2"
+#require 'test/unit/ui/console/testrunner'
+#require 'test/unit/testsuite'
 require 'test/unit/ui/console/testrunner'
 
-require 'test_logger'
-require 'test_config'
-require 'test_connect'
-require 'test_attributes'
-require 'test_functions'
-require 'test_call'
-require 'test_changing'
-require 'test_data'
-require 'test_deep'
-require 'test_sflight'
+require_relative 'test_logger'
+require_relative 'test_config'
+require_relative 'test_connect'
+require_relative 'test_attributes'
+require_relative 'test_functions'
+require_relative 'test_call'
+require_relative 'test_changing'
+require_relative 'test_data'
+require_relative 'test_deep'
+require_relative 'test_sflight'
 
 class TS_MyTests
    def self.suite

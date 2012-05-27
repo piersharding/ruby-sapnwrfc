@@ -5,7 +5,7 @@ $:.unshift(File.dirname(__FILE__) + '/../ext/nwsaprfc')
 
 require 'sapnwrfc'
 
-$TEST_FILE = 'test_sap_logger.log'
+$SAP_CONFIG = 'test_sap_logger.log'
 require 'fileutils'
 
 require 'test/unit'
@@ -15,13 +15,13 @@ class SAPLoggerTest < Test::Unit::TestCase
 
 	
 	def setup
-	  SAP_LOGGER.set_logdev($TEST_FILE)
+	  SAP_LOGGER.set_logdev($SAP_CONFIG)
     #SAP_LOGGER.warn "program: #{$0}\n"
 	end
 	
 #  The different ways of connecting to SAP
   def get_log
-    log = File.open($TEST_FILE) { |f| f.gets(nil) }
+    log = File.open($SAP_CONFIG) { |f| f.gets(nil) }
 		#SAP_LOGGER.warn log
 		return log
   end
@@ -38,7 +38,7 @@ class SAPLoggerTest < Test::Unit::TestCase
 		assert( SAP_LOGGER.error("an error") )
 		assert( SAP_LOGGER.fatal("a fatal") )
 		assert( SAP_LOGGER.unknown("an unknown") )
-		assert( FileTest.exists?($TEST_FILE) )
+		assert( FileTest.exists?($SAP_CONFIG) )
 		#$stderr.print "lines: #{log_lines.length}\n"
     assert( log_lines.length >= 5 ) # one for each log entry and a header
 	end
@@ -50,16 +50,16 @@ class SAPLoggerTest < Test::Unit::TestCase
 		assert( SAP_LOGGER.error("an error") )
 		assert( SAP_LOGGER.fatal("a fatal") )
 		assert( SAP_LOGGER.unknown("an unknown") )
-		assert( FileTest.exists?($TEST_FILE) )
+		assert( FileTest.exists?($SAP_CONFIG) )
 		#$stderr.print "lines: #{log_lines.length}\n"
     assert( log_lines.length >= 5 ) # one for each log entry >= WARN and a header
 	end
 
 	def teardown
-    if FileTest.exists?($TEST_FILE)
+    if FileTest.exists?($SAP_CONFIG)
       SAP_LOGGER.set_logdev(STDERR) # Unlock the log file before deletion
       GC.start                      # Ensure garbage colletion is run (unlock)
-      File.delete($TEST_FILE)
+      File.delete($SAP_CONFIG)
     end
 	end
 end

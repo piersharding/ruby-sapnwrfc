@@ -7,18 +7,18 @@ $:.unshift(File.dirname(__FILE__) + '/../ext/nwsaprfc')
 
 require 'sapnwrfc'
 
-$TEST_FILE = ENV.has_key?('SAP_YML') ? ENV['SAP_YML'] : 'sap.yml'
+$SAP_CONFIG = ENV.has_key?('SAP_YML') ? ENV['SAP_YML'] : 'sap.yml'
 
 require 'test/unit'
 require 'test/unit/assertions'
 
 class SAPSFlightTest < Test::Unit::TestCase
 	def setup
-	  #SAP_LOGGER.warn "Current DIR: #{Dir.pwd}\n"
-	  if FileTest.exists?($TEST_FILE)
-  	  SAPNW::Base.config_location = $TEST_FILE
+	  SAP_LOGGER.warn "Current DIR: #{Dir.pwd}\n"
+	  if FileTest.exists?($SAP_CONFIG)
+  	  SAPNW::Base.config_location = $SAP_CONFIG
 		else
-  	  SAPNW::Base.config_location = 'test/' + $TEST_FILE
+  	  SAPNW::Base.config_location = 'test/' + $SAP_CONFIG
 		end
 	  SAPNW::Base.load_config
     #SAP_LOGGER.warn "program: #{$0}\n"

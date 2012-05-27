@@ -9,7 +9,7 @@ require 'sapnwrfc'
 
 $SAP_CONFIG = ENV.has_key?('SAP_YML') ? ENV['SAP_YML'] : 'sap.yml'
 
-$ITER = 1
+$ITER = 50
 
 require 'test/unit'
 require 'test/unit/assertions'
@@ -26,18 +26,20 @@ class SAPDeepTest < Test::Unit::TestCase
     #SAP_LOGGER.warn "program: #{$0}\n"
 	end
 	
-	def test_BASIC_00010_Test_Deep
+	def test_BASIC_00010_Test_Structure
 		begin 
 		  $ITER.times do |iter|
 	      assert(conn = SAPNW::Base.rfc_connect)
 	      attrib = conn.connection_attributes
 	      SAP_LOGGER.debug "Connection Attributes: #{attrib.inspect}\n"
-		    fds = conn.discover("RFC_XML_TEST_1")
+		    fds = conn.discover("STFC_STRUCTURE")
 	      SAP_LOGGER.debug "Parameters: #{fds.parameters.keys.inspect}\n"
         fs = fds.new_function_call
-			  #fs.IM_XML_TABLE = [{ 'RFCIXMLLIN' => ["deadbeef"].pack("H*") } ]
-		    #fs.invoke
-	      SAP_LOGGER.debug "OUT_XML_TABLE: #{fs.OUT_XML_TABLE.inspect}\n"
+			  fs.IMPORTSTRUCT = { 'RFCDATA1' =>  'The quick brown fox ...' }
+		    fs.invoke
+	      SAP_LOGGER.debug "RESPTEXT: #{fs.RESPTEXT.inspect}\n"
+	      SAP_LOGGER.debug "ECHOSTRUCT: #{fs.ECHOSTRUCT.inspect}\n"
+			  assert(fs.ECHOSTRUCT['RFCDATA1'] == 'The quick brown fox ...')
 		    assert(conn.close)
 			  GC.start unless iter % 50
 			end
@@ -46,7 +48,7 @@ class SAPDeepTest < Test::Unit::TestCase
 		  raise "gone"
 		end
 	end
-	
+
 	def teardown
 	end
 end
