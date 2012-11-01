@@ -2679,17 +2679,38 @@ static VALUE error_error(VALUE obj)
 }
 
 
+static VALUE sapnwrfc_lib_version(VALUE class)
+{
+    char * ver;
+    int len;
+    unsigned majorVersion, minorVersion, patchLevel;
+    VALUE ret;
+
+    ver = make_space(100);
+
+    RfcGetVersion(&majorVersion, &minorVersion, &patchLevel);
+
+    len = sprintf(ver, "major: %d minor: %d patch: %d",
+                  majorVersion, minorVersion, patchLevel);
+    ret = rb_str_new(ver, len);
+    free(ver);
+    return(ret);
+}
+
+
+
 /* create a module init function */
 void
 Init_nwsaprfc(void) {
 
         /* create global for server functions map */
         global_server_functions = rb_hash_new();
-                rb_global_variable(&global_server_functions);
+        rb_global_variable(&global_server_functions);
 
         /* create the new module */
-                mSAPNW = rb_define_module("SAPNW");
+        mSAPNW = rb_define_module("SAPNW");
         mSAPNW_RFC = rb_define_module_under(mSAPNW, "RFC");
+        rb_define_singleton_method(mSAPNW_RFC, "LibVersion", sapnwrfc_lib_version, 0);
         cSAPNW_RFC_HANDLE = rb_define_class_under(mSAPNW_RFC, "Handle", rb_cObject);
         cSAPNW_RFC_SERVERHANDLE = rb_define_class_under(mSAPNW_RFC, "ServerHandle", rb_cObject);
         cSAPNW_RFC_FUNCDESC = rb_define_class_under(mSAPNW_RFC, "FunctionDescriptor", rb_cObject);
@@ -2697,33 +2718,33 @@ Init_nwsaprfc(void) {
         cSAPNW_RFC_CONNEXCPT = rb_define_class_under(mSAPNW_RFC, "ConnectionException", rb_eException);
         cSAPNW_RFC_SERVEXCPT = rb_define_class_under(mSAPNW_RFC, "ServerException", rb_eException);
         cSAPNW_RFC_FUNCEXCPT = rb_define_class_under(mSAPNW_RFC, "FunctionCallException", rb_eException);
-            rb_define_method(cSAPNW_RFC_CONNEXCPT, "error", error_error, 0);
-            rb_define_method(cSAPNW_RFC_SERVEXCPT, "error", error_error, 0);
-            rb_define_method(cSAPNW_RFC_FUNCEXCPT, "error", error_error, 0);
+        rb_define_method(cSAPNW_RFC_CONNEXCPT, "error", error_error, 0);
+        rb_define_method(cSAPNW_RFC_SERVEXCPT, "error", error_error, 0);
+        rb_define_method(cSAPNW_RFC_FUNCEXCPT, "error", error_error, 0);
 
-                /* define Handle methods */
-                rb_define_singleton_method(cSAPNW_RFC_HANDLE, "new", SAPNW_RFC_HANDLE_new, 1);
+        /* define Handle methods */
+        rb_define_singleton_method(cSAPNW_RFC_HANDLE, "new", SAPNW_RFC_HANDLE_new, 1);
         rb_define_method(cSAPNW_RFC_HANDLE, "connection_attributes", SAPNW_RFC_HANDLE_connection_attributes, 0);
         rb_define_method(cSAPNW_RFC_HANDLE, "reset_server_context", SAPNW_RFC_HANDLE_reset_server_context, 0);
         rb_define_method(cSAPNW_RFC_HANDLE, "function_lookup", SAPNW_RFC_HANDLE_function_lookup, 3);
         rb_define_method(cSAPNW_RFC_HANDLE, "close", SAPNW_RFC_HANDLE_close, 0);
         rb_define_method(cSAPNW_RFC_HANDLE, "ping", SAPNW_RFC_HANDLE_ping, 0);
 
-                /* define ServerHandle methods */
-                rb_define_singleton_method(cSAPNW_RFC_SERVERHANDLE, "new", SAPNW_RFC_SERVERHANDLE_new, 1);
+        /* define ServerHandle methods */
+        rb_define_singleton_method(cSAPNW_RFC_SERVERHANDLE, "new", SAPNW_RFC_SERVERHANDLE_new, 1);
         rb_define_method(cSAPNW_RFC_SERVERHANDLE, "connection_attributes", SAPNW_RFC_SERVERHANDLE_connection_attributes, 0);
         rb_define_method(cSAPNW_RFC_SERVERHANDLE, "accept_loop", SAPNW_RFC_SERVERHANDLE_accept, 2);
         rb_define_method(cSAPNW_RFC_SERVERHANDLE, "process_loop", SAPNW_RFC_SERVERHANDLE_process, 1);
         rb_define_method(cSAPNW_RFC_SERVERHANDLE, "close", SAPNW_RFC_SERVERHANDLE_close, 0);
 
-                /* define FunctionDescription methods */
-                rb_define_singleton_method(cSAPNW_RFC_FUNCDESC, "new", SAPNW_RFC_FUNCDESC_new, 1);
+        /* define FunctionDescription methods */
+        rb_define_singleton_method(cSAPNW_RFC_FUNCDESC, "new", SAPNW_RFC_FUNCDESC_new, 1);
         rb_define_method(cSAPNW_RFC_FUNCDESC, "add_parameter", SAPNW_RFC_FUNCDESC_add_parameter, 1);
         rb_define_method(cSAPNW_RFC_FUNCDESC, "enable_XML", SAPNW_RFC_FUNCDESC_enable_XML, 0);
         rb_define_method(cSAPNW_RFC_FUNCDESC, "create_function_call", SAPNW_RFC_FUNCDESC_create_function_call, 1);
         rb_define_method(cSAPNW_RFC_FUNCDESC, "install", SAPNW_RFC_FUNCDESC_install, 1);
 
-                /* define FunctionCall methods */
+        /* define FunctionCall methods */
         rb_define_method(cSAPNW_RFC_FUNC_CALL, "invoke", SAPNW_RFC_FUNC_CALL_invoke, 0);
         rb_define_method(cSAPNW_RFC_FUNC_CALL, "set_active", SAPNW_RFC_FUNC_CALL_set_active, 2);
 }

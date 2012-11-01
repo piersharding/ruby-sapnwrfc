@@ -22,3 +22,7 @@ Thu Dec 11 09:51:47 NZDT 2008
 
 Mon May 28 09:33:39 NZST 2012
 * fix 4 byte char buffers
+
+Fri Nov  2 07:21:42 NZDT 2012
+* added function SAPNW::RFC.LibVersion() for determining the NW RFC SDK library version
+
