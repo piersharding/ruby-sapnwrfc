@@ -14,7 +14,8 @@ rfclib = "sapnwrfc"
 
 if ! /(mswin32|mingw32)/.match(Config::CONFIG["host_os"])
 #  $CFLAGS += " -g -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -m64 -mno-3dnow -fno-strict-aliasing -pipe -fexceptions -funsigned-char -Wall -Wno-uninitialized -Wno-long-long -Wcast-align "
-  $CFLAGS += " -D_LARGEFILE_SOURCE -mno-3dnow -fno-strict-aliasing -pipe -fexceptions -funsigned-char -Wall -Wno-uninitialized -Wno-long-long -Wcast-align "
+#  $CFLAGS += " -D_LARGEFILE_SOURCE -mno-3dnow -fno-strict-aliasing -pipe -fexceptions -funsigned-char -Wall -Wno-uninitialized -Wno-long-long -Wcast-align "
+  $CFLAGS += " -D_LARGEFILE_SOURCE -fno-strict-aliasing -pipe -fexceptions -funsigned-char -Wall -Wno-uninitialized -Wno-long-long -Wcast-align "
   $CFLAGS += " -DSAPwithUNICODE "
   $CFLAGS += " -DSAPonUNIX "
 #  $CFLAGS += " -DSAP_PLATFORM_MAKENAME=linuxx86_64 "

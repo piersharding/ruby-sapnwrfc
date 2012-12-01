@@ -26,3 +26,5 @@ Mon May 28 09:33:39 NZST 2012
 Fri Nov  2 07:21:42 NZDT 2012
 * added function SAPNW::RFC.LibVersion() for determining the NW RFC SDK library version
 
+Sat Dec  1 21:53:03 NZDT 2012
+* removed obsolete -mo-3dnow CFLAG - thanks Gregor
