@@ -12,7 +12,7 @@ end
 
 rfclib = "sapnwrfc"
 
-if ! /(mswin32|mingw32)/.match(Config::CONFIG["host_os"])
+if ! /(mswin32|mingw32)/.match(RbConfig::CONFIG["host_os"])
 #  $CFLAGS += " -g -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -m64 -mno-3dnow -fno-strict-aliasing -pipe -fexceptions -funsigned-char -Wall -Wno-uninitialized -Wno-long-long -Wcast-align "
 #  $CFLAGS += " -D_LARGEFILE_SOURCE -mno-3dnow -fno-strict-aliasing -pipe -fexceptions -funsigned-char -Wall -Wno-uninitialized -Wno-long-long -Wcast-align "
   $CFLAGS += " -D_LARGEFILE_SOURCE -fno-strict-aliasing -pipe -fexceptions -funsigned-char -Wall -Wno-uninitialized -Wno-long-long -Wcast-align "
@@ -95,7 +95,7 @@ end
 #  print "DID NOT find libicudecnumber - this may cause problems  ...\n"
 #end
 
-if ! /(mswin32|mingw32)/.match(Config::CONFIG["host_os"])
+if ! /(mswin32|mingw32)/.match(RbConfig::CONFIG["host_os"])
   print "Existing Compile protocol: #{COMPILE_C} ...\n"
   COMPILE_C  =
     '$(CC) $(INCFLAGS) $(CFLAGS) $(CPPFLAGS) -E -c $< > $<.ii' + "\n\t" +

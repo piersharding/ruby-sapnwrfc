@@ -9,11 +9,10 @@ Gem::Specification.new do |spec|
     an SAP Netweaver system NW2004+
   EOF
   spec.version = '0.26'
-  spec.autorequire = [ 'sapnwrfc' ]
-  spec.platform = Config::CONFIG["arch"]
   spec.homepage = 'http://www.piersharding.com'
   spec.files = Dir['lib/**/*.rb']
-  spec.files += Dir['ext/nwsaprfc/*.so']
+  spec.files += Dir['ext/nwsaprfc/nwsaprfc.c']
   spec.required_ruby_version = '>= 1.8.0'
   spec.require_paths = ['ext/nwsaprfc', 'lib']
+  spec.extensions = %w[ext/nwsaprfc/extconf.rb]
 end
