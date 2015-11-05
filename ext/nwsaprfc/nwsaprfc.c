@@ -9,6 +9,7 @@
 **************************************************************************************/
 
 #include <ruby.h>
+#include <ruby/encoding.h>
 
 /* SAP flag for Windows NT or 95 */
 #ifdef _WIN32
@@ -50,6 +51,7 @@ typedef struct SAPNW_FUNC_DESC_rec {
                                     unsigned refs;
                                     */
                                     char * name;
+                                    rb_encoding * name_enc;
 } SAPNW_FUNC_DESC;
 
 typedef struct SAPNW_FUNC_rec {
@@ -161,7 +163,7 @@ VALUE u16to8c(SAP_UC * str, int len) {
     resultLength = 0;
 
   rc = RfcSAPUCToUTF8(str, len, (RFC_BYTE *)utf8, &utf8Size, &resultLength, &errorInfo);
-  rb_str = rb_str_new(utf8, resultLength);
+  rb_str = rb_enc_str_new(utf8, resultLength, rb_utf8_encoding());
     free(utf8);
   return rb_str;
 }
@@ -184,7 +186,7 @@ VALUE u16to8(SAP_UC * str) {
     resultLength = 0;
 
   rc = RfcSAPUCToUTF8(str, strlenU(str), (RFC_BYTE *)utf8, &utf8Size, &resultLength, &errorInfo);
-  rb_str = rb_str_new(utf8, resultLength);
+  rb_str = rb_enc_str_new(utf8, resultLength, rb_utf8_encoding());
     free(utf8);
   return rb_str;
 }
@@ -844,6 +846,7 @@ static VALUE  SAPNW_RFC_FUNCDESC_new(VALUE class, VALUE func){
     dptr->conn_handle->refs ++;
     */
     dptr->name = make_strdup(func);
+    dptr->name_enc = rb_enc_get(func);
     function_def = Data_Wrap_Struct(class,
                                     func_desc_handle_mark,
                                                             func_desc_handle_free,
@@ -906,6 +909,7 @@ static VALUE SAPNW_RFC_HANDLE_function_lookup(VALUE self, VALUE class, VALUE par
     dptr->conn_handle->refs ++;
     */
     dptr->name = make_strdup(func);
+    dptr->name_enc = rb_enc_get(func);
     function_def = Data_Wrap_Struct(class,
                                     func_desc_handle_mark,
                                                             func_desc_handle_free,
@@ -979,7 +983,9 @@ static void func_call_handle_free (SAPNW_FUNC *ptr)
     ptr->handle = NULL;
   if (rc != RFC_OK) {
         SAPNW_rfc_conn_error(rb_str_concat(rb_str_new2("Problem in RfcDesctroyFunction: "),
-                                           rb_str_new2( ptr->desc_handle->name)),
+                                           rb_enc_str_new(ptr->desc_handle->name,
+                                                          strlen(ptr->desc_handle->name),
+                                                          ptr->desc_handle->name_enc)),
                              INT2NUM(errorInfo.code),
                                                  u16to8(errorInfo.key),
                                                  u16to8(errorInfo.message));
@@ -1010,7 +1016,7 @@ static VALUE SAPNW_RFC_FUNCDESC_create_function_call(VALUE self, VALUE class){
   /* bail on a bad lookup */
   if (func_handle == NULL) {
         SAPNW_rfc_conn_error(rb_str_concat(rb_str_new2("Problem Creating Function Data Container RFC: "),
-                                           rb_str_new2(dptr->name)),
+                                           rb_enc_str_new(dptr->name,strlen(dptr->name),dptr->name_enc)),
                              INT2NUM(errorInfo.code),
                                                  u16to8(errorInfo.key),
                                                  u16to8(errorInfo.message));
@@ -1028,7 +1034,7 @@ static VALUE SAPNW_RFC_FUNCDESC_create_function_call(VALUE self, VALUE class){
                                 func_call_handle_mark,
                                                     func_call_handle_free,
                                                     fptr);
-  rb_iv_set(function, "@name", rb_str_new2(dptr->name));
+  rb_iv_set(function, "@name", rb_enc_str_new(dptr->name,strlen(dptr->name),dptr->name_enc));
   rb_iv_set(function, "@function_descriptor", self);
 
   //rb_iv_set(function, "@parameters", rb_hash_new());
@@ -1051,7 +1057,7 @@ static VALUE SAPNW_RFC_FUNCDESC_enable_XML(VALUE self){
   rc = RfcEnableBASXML(dptr->handle, &errorInfo);
   if (rc != RFC_OK) {
        SAPNW_rfc_call_error(rb_str_concat(rb_str_new2("Problem with RfcEnableBASXML: "),
-                                           rb_str_new2(dptr->name)),
+                                         rb_enc_str_new(dptr->name,strlen(dptr->name),dptr->name_enc)),
                          INT2NUM(errorInfo.code),
                                                 u16to8(errorInfo.key),
                                        u16to8(errorInfo.message));
@@ -1304,7 +1310,7 @@ static VALUE get_xstring_value(DATA_CONTAINER_HANDLE hcont, SAP_UC *name){
                                        u16to8(errorInfo.message));
   }
 
-    val = rb_str_new(buffer, strLen);
+    val = rb_enc_str_new(buffer, strLen, rb_utf8_encoding());
     free(buffer);
     return val;
 }
@@ -1403,7 +1409,7 @@ static VALUE get_byte_value(DATA_CONTAINER_HANDLE hcont, SAP_UC *name, unsigned 
                                                 u16to8(errorInfo.key),
                                        u16to8(errorInfo.message));
   }
-    val = rb_str_new(buffer, len);
+    val = rb_enc_str_new(buffer, len, rb_utf8_encoding());
   free(buffer);
 
     return val;
@@ -2505,14 +2511,17 @@ static VALUE SAPNW_RFC_FUNCDESC_install(VALUE self, VALUE sysid){
   /* bail on a bad lookup */
   if (rc != RFC_OK) {
         SAPNW_rfc_serv_error(rb_str_concat(rb_str_new2("Problem with RfcInstallServerFunction: "),
-                                           rb_str_new2(dptr->name)),
+                                           rb_enc_str_new(dptr->name,strlen(dptr->name),dptr->name_enc)),
+
                              INT2NUM(errorInfo.code),
                                                  u16to8(errorInfo.key),
                                                  u16to8(errorInfo.message));
     }
 
   /* store a global pointer the the func desc for the function call back */
-  rb_hash_aset(global_server_functions, rb_str_new2(dptr->name), self);
+  rb_hash_aset(global_server_functions
+              ,rb_enc_str_new(dptr->name,strlen(dptr->name),dptr->name_enc)
+              ,self);
 
   return Qtrue;
 }
@@ -2622,11 +2631,11 @@ static VALUE SAPNW_RFC_FUNC_CALL_invoke(VALUE self){
 
   /* bail on a bad RFC Call */
   if (rc != RFC_OK) {
-        SAPNW_rfc_call_error(rb_str_concat(rb_str_new2("Problem Invoking RFC: "),
-                                           rb_str_new2(dptr->name)),
-                             INT2NUM(errorInfo.code),
-                                                 u16to8(errorInfo.key),
-                                                 u16to8(errorInfo.message));
+        SAPNW_rfc_call_error(rb_str_concat(rb_str_new2("Problem Invoking RFC: ")
+                                          ,rb_enc_str_new(dptr->name,strlen(dptr->name),dptr->name_enc))
+                            ,INT2NUM(errorInfo.code)
+                            ,u16to8(errorInfo.key)
+                            ,u16to8(errorInfo.message));
     }
 
     //for (i = 0; i < RARRAY(parameters)->len; i++) {
@@ -2692,7 +2701,7 @@ static VALUE sapnwrfc_lib_version(VALUE class)
 
     len = sprintf(ver, "major: %d minor: %d patch: %d",
                   majorVersion, minorVersion, patchLevel);
-    ret = rb_str_new(ver, len);
+    ret = rb_enc_str_new(ver, len, rb_utf8_encoding());
     free(ver);
     return(ret);
 }
