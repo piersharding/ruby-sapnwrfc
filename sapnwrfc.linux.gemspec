@@ -12,6 +12,7 @@ Gem::Specification.new do |spec|
   spec.homepage = 'http://www.piersharding.com'
   spec.files = Dir['lib/**/*.rb']
   spec.files += Dir['ext/nwsaprfc/nwsaprfc.c']
+  spec.files += Dir['tools/u16lit.pl']
   spec.required_ruby_version = '>= 1.9.1'
   spec.require_paths = ['ext/nwsaprfc', 'lib']
   spec.extensions = %w[ext/nwsaprfc/extconf.rb]
